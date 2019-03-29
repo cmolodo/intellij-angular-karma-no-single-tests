@@ -1,0 +1,108 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "task-line": {
+      "root": "projects/task-line/",
+      "sourceRoot": "projects/task-line/src",
+      "projectType": "application",
+      "prefix": "ro",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/task-line",
+            "index": "projects/task-line/src/index.html",
+            "main": "projects/task-line/src/main.ts",
+            "polyfills": "projects/task-line/src/polyfills.ts",
+            "tsConfig": "projects/task-line/tsconfig.app.json",
+            "assets": [
+              "projects/task-line/src/favicon.ico",
+              "projects/task-line/src/assets"
+            ],
+            "styles": [
+              "projects/task-line/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/task-line/src/environments/environment.ts",
+                  "with": "projects/task-line/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "task-line:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "task-line:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "task-line:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/task-line/src/test.ts",
+            "polyfills": "projects/task-line/src/polyfills.ts",
+            "tsConfig": "projects/task-line/tsconfig.spec.json",
+            "karmaConfig": "projects/task-line/karma.conf.js",
+            "styles": [
+              "projects/task-line/src/styles.scss"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/task-line/src/favicon.ico",
+              "projects/task-line/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/task-line/tsconfig.app.json",
+              "projects/task-line/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "task-line",
+  "schematics": {
+    "@schematics/angular:component": {
+      "prefix": "test",
+      "styleext": "scss"
+    },
+    "@schematics/angular:directive": {
+      "prefix": "test"
+    }
+  }
+}
